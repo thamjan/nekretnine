@@ -71,8 +71,7 @@
         "; 
          
         $update_params = array( 
-            //curent timestamp
-            ':last_login' =>  $_SERVER['REQUEST_TIME']  ,
+            ':last_login' => date('Y-m-d H:i:s',$_SERVER['REQUEST_TIME']),
             ':id_user' => $row['id_user']
         ); 
          
