@@ -316,6 +316,11 @@ table tr:hover td{
 	background: #fff8cf;
 	color: #000000; 
 }
+
+table tfoot tr:hover td{ 
+	background: #fff;
+	color: #000000; 
+}
 table .chb{ 
 	width: 20px; 
 }
@@ -389,3 +394,9 @@ table .chb{
 .align-left{ text-align: left; }
 .align-right{ text-align: right; }
 .align-center{ text-align: center; }
+
+/******pagination****/
+.active_page {
+	background: #f07e01;
+	color: #fff !important;
+}
