@@ -1,10 +1,10 @@
 <?php 
 
     
-    $username = "user3"; 
-    $password = "xxx"; 
+    $username = "root"; 
+    $password = ""; 
     $host = "localhost"; 
-    $dbname = "apartman"; 
+    $dbname = "nekretnine"; 
     
 
     $options = array(PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES utf8'); 
@@ -47,4 +47,4 @@
     header('Content-Type: text/html; charset=utf-8'); 
      
     
-//    session_start(); 
+ 

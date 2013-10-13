@@ -16,7 +16,7 @@
     text-align: center;
 }
 
-#header #nav #currentpage a{
+.current_page a{
     color: red !important;
 }
 

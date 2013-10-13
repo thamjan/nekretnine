@@ -1,6 +1,6 @@
 <?php 
-    
-    include 'logic/common.php';
+  
+    include_once 'logic/common.php';
      
     if(!empty($_POST)) 
     { 

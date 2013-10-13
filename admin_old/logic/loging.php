@@ -15,8 +15,7 @@
                 prezime,
                 lozinka, 
                 salt, 
-                email,
-                last_login
+                email 
             FROM users 
             WHERE 
                 username = :username 
@@ -62,29 +61,6 @@
             $_SESSION['ime'] = $row['ime'];
             $_SESSION['timeout'] = time();
             $_SESSION['errMsg'] = '';
-            $_SESSION['lastLogin'] = $row['last_login'];
-            
-            $update = " 
-            UPDATE users
-            SET last_login = :last_login
-            WHERE id_user = :id_user
-        "; 
-         
-        $update_params = array( 
-            //curent timestamp
-            ':last_login' =>  $_SERVER['REQUEST_TIME']  ,
-            ':id_user' => $row['id_user']
-        ); 
-         
-        try 
-        { 
-            $stmt = $db->prepare($update); 
-            $result = $stmt->execute($update_params); 
-        } 
-        catch(PDOException $ex) 
-        { 
-            die("Failed to run query: " . $ex->getMessage()); 
-        } 
              
             header("Location: ../dashboard.php"); 
             die("Redirecting to: dashboard.php"); 
