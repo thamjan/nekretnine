@@ -81,6 +81,7 @@ footer{
 	display: inline-block;
 	width: 220px;
 	float: right;
+	
 }
 
 #linkovi{
@@ -426,3 +427,101 @@ border-bottom: 1px dashed;
 }
 
 #highlight .overview li img{width:100%;}                   
+
+/****single add***/
+
+.oglas-full{
+	position:relative;
+	background:#fff;
+	overflow:hidden;
+}
+.oglas-full h2, .oglas-full h3{
+	text-align:center;
+	margin:0;
+	padding:3px 0;
+	background:#5e5e5e;
+	color:#fff;
+}
+
+.back-btn {
+	float: left;
+	text-decoration: none;
+	background: #2bd8d7;
+	color: #fff;
+	position: absolute;
+	top: 11px;
+	left: 15px;
+	padding: 7px 17px;
+	font-size: 12px;
+}
+
+.add-featured{
+	display: block;
+	margin: 0 2%;
+	overflow: hidden;
+	height: 300px;
+}
+
+.add-media {
+	padding: 0 0 20px 0;
+	width: 35%;
+	float:left;
+}
+
+.add-media ul{
+	padding: 0 10px;
+	overflow: hidden;
+}
+
+.add-media ul li {
+	list-style: none;
+	float: left;
+	margin: 5px;
+}
+
+.add-media ul li a img {
+	width: 103px;
+	height: 103px;
+}
+
+.add-description, .add-extras {
+	width: 63%;
+	float:right;
+	margin:21px 2% 0 0;
+}
+
+.add-description p{
+	text-indent: 30px;
+	font-size:15px;
+}
+
+.add-extras table{
+	width:100%;
+	text-align:left;
+	font-size:15px;
+	margin-bottom:20px;
+}
+
+.add-extras table tr:nth-child(even) {
+	background: #CCC
+}
+
+.add-extras table td{
+	border:1px solid #ededed;
+	padding:2px 5px;
+}
+
+.add-map{
+	height:500px;
+	margin:0 2%;
+}
+
+.single-add{
+	margin:20px auto 0 auto;
+}
+
+#map-canvas{
+	width:100%;
+	height:400px;
+}
+

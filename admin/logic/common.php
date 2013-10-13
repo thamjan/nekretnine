@@ -1,8 +1,8 @@
 <?php 
 
     
-    $username = "user3"; 
-    $password = "xxx"; 
+    $username = "root"; 
+    $password = ""; 
     $host = "localhost"; 
     $dbname = "nekretnine"; 
     

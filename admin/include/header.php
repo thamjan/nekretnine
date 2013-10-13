@@ -1,7 +1,7 @@
 <div id="header">
     <div id="top">
         <div class="left">
-            <p>Dobrodošli, <strong><?= @$_SESSION['ime'] ?></strong> [ <a href="odjava.php">odjava</a> ]</p>
+            <p>Dobrodošli, <strong><?php echo @$_SESSION['ime'] ?></strong> [ <a href="odjava.php">odjava</a> ]</p>
         </div>
         <div class="right">
             <div class="align-right">
