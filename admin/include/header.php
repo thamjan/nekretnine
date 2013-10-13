@@ -5,7 +5,7 @@
         </div>
         <div class="right">
             <div class="align-right">
-                <p>Poslednje logovanje: <strong><?= @$_SESSION['lastLogin'] ?></strong></p>
+                <p>Poslednje logovanje: <strong><?php echo @$_SESSION['lastLogin'] ?></strong></p>
             </div>
         </div>
     </div>
