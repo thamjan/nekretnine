@@ -256,7 +256,10 @@ button:hover, .button:hover{
 #main form select{
 	border: 1px solid #DDDDDD;
 	border-radius: 3px;
-
+	text-transform: uppercase;
+}
+#main form select option{
+	
 }
 #main form .text{
 	width: 100%;
@@ -267,6 +270,7 @@ button:hover, .button:hover{
 #main form .err{
 	border: 1px solid #FF5252;
 }
+
 #main form .red{
 	color: #FF5252;
 }
