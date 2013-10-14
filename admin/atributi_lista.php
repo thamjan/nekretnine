@@ -20,8 +20,8 @@
 
 
                     <div class="full_w">
-                        <div class="h_title">Uređivanje kategorija</div>
-                        <h2>Kategorije</h2>
+                        <div class="h_title">Uređivanje atributa</div>
+                        <h2>Atributi</h2>
 
 
                         <table>

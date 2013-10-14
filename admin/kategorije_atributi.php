@@ -14,27 +14,15 @@
 
 
                     <div class="full_w">
-                        <div class="h_title">Dodavanje novog atributa</div>
+                        <div class="h_title">Dodavanje nove kategorije</div>
 
                         <form>
                             <div class="element">
-                                <label for="name">Naziv atributa</label>
+                                <label for="name">Naziv kategorije</label>
                                 <input id="txtNaziv" name="txtNaziv" class="text err" />
                             </div>
-							<!--<div class="element">
-                                <label for="name">Tip atributa</label>
-                                <input id="txtTip" name="txtTip" class="text err" />
-                            </div>-->
-							<div class="element">
-								<label for="category">Tip atributa</label>
-								<select name="category" class="err" id="txtTip">
-									<option value="0">-- Odaberite</option>
-									<option value="1">Ima/Nema</option>
-									<option value="2">Opis</option>
-								</select>
-							</div>
                             <div class="entry">
-                                <button type="submit" class="btnSubmit" val='11'>Dodaj</button>
+                                <button type="submit" class="btnSubmit" val='10'>Dodaj</button>
                             </div>
                         </form>
                         <div class="sep"></div>
