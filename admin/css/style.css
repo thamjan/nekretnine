@@ -405,3 +405,21 @@ table .chb{
 	color: #fff !important;
 }
 
+/****tinymce****/
+.editor-content{
+	height:325px;
+}
+
+.checkbox-wrap{
+	font-weight:bold;
+}
+
+.checkbox-wrap input{
+	position: relative;
+	top: 3px;
+	left: 10px;
+}
+
+.form-content{
+	margin:20px 0;
+}

@@ -36,10 +36,7 @@
                             <?php
                             include './logic/common.php';
                             $query = '
-								SELECT DISTINCT k.naziv_kategorije as ime, count(*) as broj_oglasa 
-								FROM oglas o, kategorije k
-								WHERE o.kategorija = k.id_kategorije
-								GROUP BY kategorija
+								SELECT distinct kategorije.naziv_kategorije as ime, (select count(*) fROM oglas o WHERE o.kategorija = kategorije.id_kategorije) as broj_oglasa from kategorije
 							';
 								
 
