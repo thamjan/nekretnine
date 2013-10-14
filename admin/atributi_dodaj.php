@@ -27,7 +27,7 @@
                             </div>-->
 							<div class="element">
 								<label for="category">Tip atributa</label>
-								<select name="category" class="err" id="txtTip">
+								<select name="category" class="err" id="slTip">
 									<option value="0">-- Odaberite</option>
 									<option value="1">Ima/Nema</option>
 									<option value="2">Opis</option>

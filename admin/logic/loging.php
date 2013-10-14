@@ -59,6 +59,7 @@
             unset($row['lozinka']); 
              
             $_SESSION['user'] = $row;
+			$_SESSION['id_user'] = $row['id_user'];
             $_SESSION['ime'] = $row['ime'];
             $_SESSION['timeout'] = time();
             $_SESSION['errMsg'] = '';
