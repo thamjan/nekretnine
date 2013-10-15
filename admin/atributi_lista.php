@@ -12,6 +12,22 @@
 		</style>
     </head>
     <body>
+		<div class="tranparentOverlay">
+		</div>
+		<div class="editWindow">
+			<form id="formEdit">				
+				<label style="color: black;">Naziv</label><br />						
+				<input type="text" id="txtEditNaziv" value="initialValue"/>						
+				<button type="submit" id="btnEditSubmit">Sačuvaj</button>						
+			</form>
+		</div>
+		<div class="deleteWindow">
+			<form id="formDelete">
+				<label style="color: black;">Obrisati izabranu stavku?</label>			
+				<button id="btnDeleteYes">Da</button>											
+				<button id="btnDeleteNo">Ne</button>						
+			</form>
+		</div>
         <div class="wrap">
             <?php include_once './include/header.php'; ?>
             <div id="content">
@@ -22,8 +38,7 @@
                     <div class="full_w">
                         <div class="h_title">Uređivanje atributa</div>
                         <h2>Atributi</h2>
-
-
+						
                         <table>
                             <thead>
                                 <tr>
@@ -36,13 +51,13 @@
                             <?php
                             include './logic/common.php';
                             $query = '
-								SELECT DISTINCT a.naziv_atributa AS ime, COUNT(x.id_kategorije) AS broj_oglasa
+								SELECT a.id_atributa as id, a.naziv_atributa AS ime, COUNT(x.id_kategorije) AS broj_oglasa
 								FROM atributi a
 								LEFT JOIN 	(	SELECT ka.id_kategorije, ka.id_atributa 
 												FROM kategorije_atributi ka, atributi aa
 												WHERE ka.id_atributa = aa.id_atributa
 											) x ON x.id_atributa = a.id_atributa
-								GROUP BY a.naziv_atributa
+								GROUP BY a.id_atributa
 								ORDER BY COUNT(x.id_kategorije) DESC
 							';
 								
@@ -50,23 +65,33 @@
 
                             try {
                                 $stmt = $db->prepare($query);
-//                            $result = $stmt->execute($query_params);
                                 $result = $stmt->execute();
                             } catch (PDOException $ex) {
                                 die("Failed to run query: " . $ex->getMessage());
                             }
 
                             while (($row = $stmt->fetch()) != NULL) {
-//                                    echo '<br />row[ime]' . $row['Opstina'];
                                 echo '
                                     <tr>
-                                        <td class="align-center" id="tdNaziv">' . $row['ime'] . '</td>
+                                        <td class="align-center" id="tdNaziv' . $row['ime']  . '">' . $row['ime'] . '</td>
                                         <td class="align-center">' . $row['broj_oglasa'] . '</td>';
 								?>
                                 
                                             <td>
-                                                <a href="#" class="table-icon edit" title="Edit"></a>
-                                                <a href="#" class="table-icon delete" title="Delete"></a>
+                                                <a 	href="#" 
+													class="table-icon edit" 
+													idTu="<?php echo $row['id']; ?>" 
+													naz="<?php echo $row['ime']; ?>"
+													par="11"
+													title="Edit">
+												</a>
+												<a 	href="#" 
+													class="table-icon delete" 
+													idTu="<?php echo $row['id']; ?>" 
+													naz="<?php echo $row['ime']; ?>"
+													par="11"
+													title="Delete">
+												</a>                                           
                                             </td>
                                  </tr>  
                                         

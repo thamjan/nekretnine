@@ -9,21 +9,22 @@ try {
 include_once './common.php';
 
 switch ($p) {
-    // nova kategorija
+    // promena kategorija
     case '10':
 		$update_params = array(
-		':naziv' => @$_POST['naziv']
+		':id' => @$_POST['id'],
+		':noviNaziv' => @$_POST['noviNaziv']
 		);
-		$update = "INSERT INTO kategorije (naziv_kategorije) VALUES(:naziv)";
+		$update = "UPDATE kategorije SET naziv_kategorije=:noviNaziv WHERE id_kategorije=:id";
         break;
-		
+	// promena atributa	
     case '11':
         
 		$update_params = array(
-		':naziv' => @$_POST['naziv'],
-		':tip' => @$_POST['tip']
+		':id' => @$_POST['id'],
+		':noviNaziv' => @$_POST['noviNaziv']
 		);
-		$update = "INSERT INTO atributi (naziv_atributa, tip) VALUES(:naziv, :tip)";
+		$update = "UPDATE atributi SET naziv_atributa=:noviNaziv WHERE id_atributa=:id";
         break;
         
     default :
@@ -34,7 +35,7 @@ switch ($p) {
 try {
     $stmt = $db->prepare($update);
     $result = $stmt->execute($update_params);
-	echo 'Uspešno dodato!';
+	echo 'Uspešno promenjeno!';
 } catch (PDOException $e) {
     die("Failed to run update: " . $e->getMessage());
 }
