@@ -12,9 +12,9 @@ switch ($p) {
     // brisanje kategorije
     case '10':
 		$update_params = array(
-		
+		':id' => @$_POST['id']
 		);
-		$update = "UPDATE kategorije SET naziv_kategorije=:noviNaziv WHERE id_kategorije=:id";
+		$update = "DELETE FROM kategorije WHERE id_kategorije=:id";
         break;
 	// brisanje atributa	
     case '11':

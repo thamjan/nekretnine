@@ -12,6 +12,22 @@
 		</style>
     </head>
     <body>
+	<div class="tranparentOverlay">
+		</div>
+		<div class="editWindow">
+			<form id="formEdit">				
+				<label style="color: black;">Naziv</label><br />						
+				<input type="text" id="txtEditNaziv" value="initialValue"/>						
+				<button type="submit" id="btnEditSubmit">Sačuvaj</button>						
+			</form>
+		</div>
+		<div class="deleteWindow">
+			<form id="formDelete">
+				<label style="color: black;">Obrisati izabranu stavku?</label>			
+				<button id="btnDeleteYes">Da</button>											
+				<button id="btnDeleteNo">Ne</button>						
+			</form>
+		</div>
         <div class="wrap">
             <?php include_once './include/header.php'; ?>
             <div id="content">
@@ -37,7 +53,7 @@
                             include './logic/common.php';
                             $query = '
 
-								SELECT distinct kategorije.naziv_kategorije as ime, (select count(*) fROM oglas o WHERE o.kategorija = kategorije.id_kategorije) as broj_oglasa from kategorije
+								SELECT distinct kategorije.id_kategorije as id, kategorije.naziv_kategorije as ime, (select count(*) fROM oglas o WHERE o.kategorija = kategorije.id_kategorije) as broj_oglasa from kategorije
 
 							';
 								
@@ -45,23 +61,33 @@
 
                             try {
                                 $stmt = $db->prepare($query);
-//                            $result = $stmt->execute($query_params);
                                 $result = $stmt->execute();
                             } catch (PDOException $ex) {
                                 die("Failed to run query: " . $ex->getMessage());
                             }
 
                             while (($row = $stmt->fetch()) != NULL) {
-//                                    echo '<br />row[ime]' . $row['Opstina'];
                                 echo '
                                     <tr>
-                                        <td class="align-center" id="tdNaziv">' . $row['ime'] . '</td>
+                                        <td class="align-center" id="tdNaziv' . $row['ime']  . '">' . $row['ime'] . '</td>
                                         <td class="align-center">' . $row['broj_oglasa'] . '</td>';
 								?>
                                 
                                             <td>
-                                                <a href="#" class="table-icon edit" title="Edit"></a>
-                                                <a href="#" class="table-icon delete" title="Delete"></a>
+                                                <a 	href="#" 
+													class="table-icon edit" 
+													idTu="<?php echo $row['id']; ?>" 
+													naz="<?php echo $row['ime']; ?>"
+													par="10"
+													title="Edit">
+												</a>
+												<a 	href="#" 
+													class="table-icon delete" 
+													idTu="<?php echo $row['id']; ?>" 
+													naz="<?php echo $row['ime']; ?>"
+													par="10"
+													title="Delete">
+												</a>                                           
                                             </td>
                                  </tr>  
                                         
