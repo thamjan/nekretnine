@@ -454,3 +454,21 @@ table .chb{
 
     margin: auto;
 }
+
+/* vesti */
+article {
+	padding: 13px;
+	text-align: justify;
+	/* word-break:break-all; */
+	/* text-justify: auto; */
+}
+
+article h4 {
+	font-style: italic;
+	margin-bottom: 10px;
+}
+
+article h5 {
+	text-align: right;
+	font-style: italic;
+}
