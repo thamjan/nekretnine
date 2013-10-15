@@ -16,9 +16,9 @@ switch ($p) {
 		);
 		$update = "INSERT INTO kategorije (naziv_kategorije) VALUES(:naziv)";
         break;
-		
+	// nov atribut	
     case '11':
-        
+        echo 'params: ' . @$_POST['naziv'] . ', ' . @$_POST['tip'];
 		$update_params = array(
 		':naziv' => @$_POST['naziv'],
 		':tip' => @$_POST['tip']

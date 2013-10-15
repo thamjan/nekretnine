@@ -36,11 +36,14 @@
                             <?php
                             include './logic/common.php';
                             $query = '
-								SELECT DISTINCT k.naziv_kategorije AS ime, COUNT(o.kategorija) AS broj_oglasa
-								FROM kategorije k
-								LEFT JOIN oglas o ON o.kategorija = k.id_kategorije
-								GROUP BY k.naziv_kategorije
-								ORDER BY k.naziv_kategorije ASC
+								SELECT DISTINCT a.naziv_atributa AS ime, COUNT(x.id_kategorije) AS broj_oglasa
+								FROM atributi a
+								LEFT JOIN 	(	SELECT ka.id_kategorije, ka.id_atributa 
+												FROM kategorije_atributi ka, atributi aa
+												WHERE ka.id_atributa = aa.id_atributa
+											) x ON x.id_atributa = a.id_atributa
+								GROUP BY a.naziv_atributa
+								ORDER BY COUNT(x.id_kategorije) DESC
 							';
 								
 

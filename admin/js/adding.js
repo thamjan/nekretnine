@@ -6,6 +6,8 @@ $(document).ready(function() {
         $naziv = $('#txtNaziv').val();
 		$tip = $('#txtTip').val();
 		
+		//conslole.log($naziv + ", " + $tip);
+		
 		$.post("logic/adding.php",{
 			p: $p,
 			naziv: $naziv,
