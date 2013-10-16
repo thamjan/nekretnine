@@ -464,6 +464,7 @@ article {
 }
 
 article h4 {
+	text-align: right;
 	font-style: italic;
 	margin-bottom: 10px;
 }
@@ -471,4 +472,8 @@ article h4 {
 article h5 {
 	text-align: right;
 	font-style: italic;
+}
+
+.alignRight {
+	text-align: right;
 }

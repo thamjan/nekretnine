@@ -1,4 +1,37 @@
-<?php $thisPage = "Vesti"; ?>
+<?php 
+	$thisPage = "Vesti"; 
+	include_once './logic/common.php';
+		
+	$id = @$_GET['i'];
+	$naslov = null;
+	$tekst = null;
+	$datum_objave = null;
+	
+	//echo 'id::' . $id;
+	
+	$query = "
+	SELECT *
+	FROM post
+	WHERE id_post=$id					
+	";
+		
+    try {
+        $stmt = $db->prepare($query);
+        $result = $stmt->execute();
+    } catch (PDOException $ex) {
+        die("Failed to run query: " . $ex->getMessage());
+    }
+
+	$row = $stmt->fetch();
+	
+	$naslov = $row['naslov'];
+	$tekst = $row['text'];
+	
+	                    
+
+
+?>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html>
     <head>
@@ -14,15 +47,16 @@
 
 
                     <div class="full_w">
-                        <div class="h_title">Dodaj vest</div>
+                        <div class="h_title">Izmeni vest</div>
 						<form method="POST" id="dodaj-vest" action="#">
+							<input type='hidden' name='id' value='<?php echo $id; ?>' />
 							<div class="form-title">
 								<label for="naslov">Naslov</label>
-								<input name="naslov" type="text" />
+								<input name="naslov" type="text" value="<?php echo $naslov; ?>" />
 							</div>
 							<div class="form-content">
 								<label for="sadrzaj">Sadržaj</label>
-								<textarea name="sadrzaj" id="content-post" class="editor-content"></textarea>
+								<textarea name="sadrzaj" id="content-post" class="editor-content"><?php echo $tekst; ?></textarea>
 							</div>
 							<div class="entry" style="overflow:hidden;">
 								<div class="checkbox-wrap">
@@ -30,7 +64,7 @@
 									<input name="objavi" type="checkbox" value="1" checked/>
 								</div>
 								<input type="hidden" name="tip_posta" value="1"/>
-								<button type="submit" class="btnSubmit right" id="dodaj-post">Dodaj</button>
+								<button type="submit" class="btnSubmit right" id="dodaj-post">Sačuvaj</button>
 							</div>
 						</form>
                     </div>			
@@ -43,18 +77,18 @@
         </div>
 		<script>
 			tinymce.init({
-				selector: "textarea",
-				plugins: "link"
+				selector: "textarea"
 			});
 			
 			$(document).ready(function(){
 				$("#dodaj-post").click(function(){
 					
 					tinymce.triggerSave();
-					console.log("tu smo")
-					$.post("logic/dodajpost.php", $("#dodaj-vest").serialize(),  function(response) {
+					
+					$.post("logic/promenipost.php", $("#dodaj-vest").serialize(),  function(response) {
+						//console.log(response)
 						alert(response);
-						console.log(response)
+						window.open('vesti_lista.php', '_self');
 						});
 					return false;
 				})

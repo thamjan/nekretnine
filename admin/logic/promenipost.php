@@ -8,6 +8,7 @@ $objavi = isset($_POST['objavi']) && $_POST['objavi']  ? "1" : "0";
 $datum = date('Y-m-d H:i:s',$_SERVER['REQUEST_TIME']);
 $tip_posta = $_POST['tip_posta']; //1 vest 2 zaposlenje
 $id_korisnika = $_SESSION['id_user'];
+$id_posta = $_POST['id'];
 	if ($tip_posta ==  1){
 		$kategorija = "vesti";
 	}
@@ -15,13 +16,15 @@ $id_korisnika = $_SESSION['id_user'];
 		$kategorija = "zaposlenje";
 	}
 
-	$query = "INSERT INTO post(id_user, naslov, text, datum_objave, status, tip) VALUES ('$id_korisnika', '$naslov', '$sadrzaj', '$datum', '$objavi', '$tip_posta')";
-
+	$query = "
+		UPDATE post
+		SET naslov='$naslov', text='$sadrzaj', status='$objavi'
+		WHERE id_post=$id_posta
+	";
 	try {
 		$stmt = $db->prepare($query);
 		$stmt->execute();
-		echo "Uspešno ste dodali post";
-		//echo "Uspešno ste dodali post '".$naslov."' u kategoriji <b>".$kategorija."</b>";
+		echo "Uspešno ste izmenili post.";
 	} catch (PDOException $e) {
 		die("Failed to run update: " . $e->getMessage());
 	}

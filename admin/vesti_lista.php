@@ -2,9 +2,19 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html>
     <head>
-        <?php include './include/head.php'; ?>
+        <?php include_once './include/head.php'; ?>
+		<script type="text/javascript" src="js/post.js"></script>
     </head>
     <body>
+		<div class="tranparentOverlay">
+		</div>
+		<div class="deleteWindow">
+			<form id="formDelete">
+				<label style="color: black;">Obrisati izabranu stavku?</label>			
+				<button id="btnDeleteYes">Da</button>											
+				<button id="btnDeleteNo">Ne</button>						
+			</form>
+		</div>
         <div class="wrap">
             <?php include './include/header.php'; ?>
             <div id="content">
@@ -16,79 +26,58 @@
                         <div class="h_title">Lista vesti</div>
 						
 					</div>
+					
+					<?php
+                            include_once './logic/common.php';
+                            $query = '
+								SELECT *
+								FROM post
+								WHERE status=1 AND tip=1 
+								ORDER BY datum_objave DESC
+							';
+								
 
-					<div class="half_w half_left">
-						<div class="h_title">Treba da se doda tema vesti..........</div>
-						<article>
-							<h4>25. april 2013.</h4>
-							<p>tema vesti i u bazi i na strani za dodavanje...</p>
-							<p><em>ovde nećemo previše da se zezamo oko stilizovanja, pretpostavljam..</em></p>
-							<ul>
-								<li>tako da ću odraditi samo ovako osnovno prikazivanje...&nbsp;</li>
-							</ul>
-							<p><strong>treba i ovde tasteri za brisanje/editovanje?</strong></p>
-							<p>pobegoh u vetkre... čujemo se sutra...&nbsp;</p>
-							<p>signin' offf........</p>
-							<h5>autor: Damjan...</h5>
-						</article>
-					</div>
-			
-					<div class="half_w half_right">
-						<div class="h_title">Vest 2</div>
-						<article>
-							<p>tekst tek te teksttt ke tek.. tekst tekst tek te teksttt ke tek.. tekst tekst tek te teksttt ke tek.. tekst&nbsp;</p>
-							<p><em>tekst tek te teksttt ke tek.. tekst tekst tek te teksttt ke tek.. tekst&nbsp;</em></p>
-							<ul>
-								<li>tekst tek te teksttt ke tek.. tekst tekst tek te teksttt ke tek.. tekst tekst tek te teksttt ke tek.. tekst&nbsp;</li>
-							</ul>
-							<p><strong>tekst tek te teksttt ke tek.. tekst tekst tek te teksttt ke tek.. tekst&nbsp;</strong></p>
-							<p>tekst tek te teksttt ke tek.. tekst tekst tek te teksttt ke tek.. tekst tekst tek te teksttt ke tek.. tekst tekst tek te teksttt ke tek.. tekst tekst tek te teksttt ke tek.. tekst tekst tek te teksttt ke tek.. tekst tekst tek te teksttt ke tek.. tekst tekst tek te teksttt ke tek.. tekst&nbsp;</p>
-							<p>tekst tek te teksttt ke tek.. tekst tekst tek te teksttt ke tek.. tekst tekst tek te teksttt ke tek.. tekst&nbsp;</p>
-							<p><em>tekst tek te teksttt ke tek.. tekst tekst tek te teksttt ke tek.. tekst&nbsp;</em></p>
-							<ul>
-								<li>tekst tek te teksttt ke tek.. tekst tekst tek te teksttt ke tek.. tekst tekst tek te teksttt ke tek.. tekst&nbsp;</li>
-							</ul>
-							<p><strong>tekst tek te teksttt ke tek.. tekst tekst tek te teksttt ke tek.. tekst&nbsp;</strong></p>
-							<p>tekst tek te teksttt ke tek.. tekst tekst tek te teksttt ke tek.. tekst tekst tek te teksttt ke tek.. tekst tekst tek te teksttt ke tek.. tekst tekst tek te teksttt ke tek.. tekst tekst tek te teksttt ke tek.. tekst tekst tek te teksttt ke tek.. tekst tekst tek te teksttt ke tek.. tekst&nbsp;</p>
-							<p>end</p>
-						</article>
-					</div>
-					
-					<div class="half_w half_left">
-						<div class="h_title">Vest 2</div>
-						<article>
-							<p>tekst tek te teksttt ke tek.. tekst tekst tek te teksttt ke tek.. tekst tekst tek te teksttt ke tek.. tekst&nbsp;</p>
-							<p><em>tekst tek te teksttt ke tek.. tekst tekst tek te teksttt ke tek.. tekst&nbsp;</em></p>
-							<ul>
-								<li>tekst tek te teksttt ke tek.. tekst tekst tek te teksttt ke tek.. tekst tekst tek te teksttt ke tek.. tekst&nbsp;</li>
-							</ul>
-							<p><strong>tekst tek te teksttt ke tek.. tekst tekst tek te teksttt ke tek.. tekst&nbsp;</strong></p>
-							<p>tekst tek te teksttt ke tek.. tekst tekst tek te teksttt ke tek.. tekst tekst tek te teksttt ke tek.. tekst tekst tek te teksttt ke tek.. tekst tekst tek te teksttt ke tek.. tekst tekst tek te teksttt ke tek.. tekst tekst tek te teksttt ke tek.. tekst tekst tek te teksttt ke tek.. tekst&nbsp;</p>
-							<p>tekst tek te teksttt ke tek.. tekst tekst tek te teksttt ke tek.. tekst tekst tek te teksttt ke tek.. tekst&nbsp;</p>
-							<p><em>tekst tek te teksttt ke tek.. tekst tekst tek te teksttt ke tek.. tekst&nbsp;</em></p>
-							<ul>
-								<li>tekst tek te teksttt ke tek.. tekst tekst tek te teksttt ke tek.. tekst tekst tek te teksttt ke tek.. tekst&nbsp;</li>
-							</ul>
-							<p><strong>tekst tek te teksttt ke tek.. tekst tekst tek te teksttt ke tek.. tekst&nbsp;</strong></p>
-							<p>tekst tek te teksttt ke tek.. tekst tekst tek te teksttt ke tek.. tekst tekst tek te teksttt ke tek.. tekst tekst tek te teksttt ke tek.. tekst tekst tek te teksttt ke tek.. tekst tekst tek te teksttt ke tek.. tekst tekst tek te teksttt ke tek.. tekst tekst tek te teksttt ke tek.. tekst&nbsp;</p>
-							<p>end</p>
-						</article>
-					</div>
-					
-					<div class="half_w half_right">
-						<div class="h_title">Vest 1</div>
-						<article>
-							<p>tekst tek te teksttt ke tek.. tekst tekst tek te teksttt ke tek.. tekst tekst tek te teksttt ke tek.. tekst&nbsp;</p>
-							<p><em>tekst tek te teksttt ke tek.. tekst tekst tek te teksttt ke tek.. tekst&nbsp;</em></p>
-							<ul>
-								<li>tekst tek te teksttt ke tek.. tekst tekst tek te teksttt ke tek.. tekst tekst tek te teksttt ke tek.. tekst&nbsp;</li>
-							</ul>
-							<p><strong>tekst tek te teksttt ke tek.. tekst tekst tek te teksttt ke tek.. tekst&nbsp;</strong></p>
-							<p>tekst tek te teksttt ke tek.. tekst tekst tek te teksttt ke tek.. tekst tekst tek te teksttt ke tek.. tekst tekst tek te teksttt ke tek.. tekst tekst tek te teksttt ke tek.. tekst tekst tek te teksttt ke tek.. tekst tekst tek te teksttt ke tek.. tekst tekst tek te teksttt ke tek.. tekst&nbsp;</p>
-							<p>end</p>
-						</article>
-					</div>
-						
+
+                            try {
+                                $stmt = $db->prepare($query);
+                                $result = $stmt->execute();
+                            } catch (PDOException $ex) {
+                                die("Failed to run query: " . $ex->getMessage());
+                            }
+
+							$even = false;
+                            while (($row = $stmt->fetch()) != NULL) {
+								$naslov = $row['naslov'];
+								$datum_objave = $row['datum_objave'];
+								$tekst = $row['text'];
+								$id = $row['id_post'];
+								if($even) {
+									$orientation = 'right';
+								}
+								else {
+									$orientation = 'left';
+								}
+								
+								echo "
+									<div class=half_w half_$orientation>
+										<form id='form_$id' method='post' action='vesti_izmeni.php' >
+											<div class=h_title>
+												$naslov
+											</div>
+											<article>
+												<h4>$datum_objave</h4>
+												$tekst
+											</article>
+											<section class='alignRight'>
+												<a href='#' class='table-icon edit' title='Edit' idTu='$id'></a>
+												<a href='#' class='table-icon delete' title='Delete' par='12' idTu='$id'></a>
+											</section>
+										</form>
+									</div>									
+								";
+								$even = !$even;
+							}
+                        ?>					
                 </div>	
             </div>
 

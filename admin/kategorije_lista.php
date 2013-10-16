@@ -50,7 +50,7 @@
                             </thead>
 
                             <?php
-                            include './logic/common.php';
+                            include_once './logic/common.php';
                             $query = '
 
 								SELECT distinct kategorije.id_kategorije as id, kategorije.naziv_kategorije as ime, (select count(*) fROM oglas o WHERE o.kategorija = kategorije.id_kategorije) as broj_oglasa from kategorije

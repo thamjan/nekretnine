@@ -24,6 +24,14 @@ switch ($p) {
 		);
 		$update = "DELETE FROM atributi WHERE id_atributa=:id";
         break;
+		// brisanje vesti	
+    case '12':
+        
+		$update_params = array(
+		':id' => @$_POST['id']
+		);
+		$update = "UPDATE post SET status=2 WHERE id_post=:id";
+        break;
         
     default :
         break;
