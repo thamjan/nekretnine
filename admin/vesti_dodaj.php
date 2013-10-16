@@ -43,7 +43,8 @@
         </div>
 		<script>
 			tinymce.init({
-				selector: "textarea"
+				selector: "textarea",
+				plugins: "link"
 			});
 			
 			$(document).ready(function(){

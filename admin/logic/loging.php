@@ -64,7 +64,7 @@
             $_SESSION['timeout'] = time();
             $_SESSION['errMsg'] = '';
             $_SESSION['lastLogin'] = $row['last_login'];
-            
+            $_SESSION['active'] = true;
             $update = " 
             UPDATE users
             SET last_login = :last_login

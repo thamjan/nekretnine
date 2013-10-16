@@ -1,8 +1,8 @@
 <?php
 
-require("./logic/common.php");
+session_start();
 unset($_SESSION['user']);
-unset($_SESSION['errMsg']);
+unset($_SESSION['active']);
 
 //header("Location: ../../index.php");
 header("Location: login.php");
