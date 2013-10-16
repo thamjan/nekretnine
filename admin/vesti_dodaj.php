@@ -52,7 +52,6 @@
 					tinymce.triggerSave();
 					console.log("tu smo")
 					$.post("logic/dodajpost.php", $("#dodaj-vest").serialize(),  function(response) {
-					
 						console.log(response)
 						});
 					return false;

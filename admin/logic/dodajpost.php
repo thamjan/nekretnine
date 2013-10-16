@@ -15,10 +15,15 @@ $id_korisnika = $_SESSION['id_user'];
 		$kategorija = "zaposlenje";
 	}
 
-	$query = "INSERT INTO post(id_user, text, datum_objave, status, tip) VALUES ('$id_korisnika', '$sadrzaj', '$datum', '$objavi', '$tip_posta')";
+	$query = "INSERT INTO post(id_user, naslov, text, datum_objave, status, tip) VALUES ('$id_korisnika', '$naslov', '$sadrzaj', '$datum', '$objavi', '$tip_posta')";
 
-	$stmt = $db->prepare($query);
-	$stmt->execute();
+	try {
+		$stmt = $db->prepare($query);
+		$stmt->execute();
+		echo "Uspešno ste dodali post '".$naslov."' u kategoriji <b>".$kategorija."</b>";
+	} catch (PDOException $e) {
+		die("Failed to run update: " . $e->getMessage());
+	}
 	
-echo "Uspešno ste dodali post '".$naslov."' u kategoriji <b>".$kategorija."</b>";
+	
 ?>
