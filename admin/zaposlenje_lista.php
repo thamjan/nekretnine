@@ -23,7 +23,7 @@
 
 
                     <div class="full_w">
-                        <div class="h_title">Lista vesti</div>
+                        <div class="h_title">Lista zaposlenja</div>
 						
 					</div>
 					
@@ -32,7 +32,7 @@
                             $query = '
 								SELECT *
 								FROM post
-								WHERE tip=1 
+								WHERE tip=2
 								ORDER BY datum_objave DESC
 							';
 								
@@ -60,7 +60,7 @@
 								
 								echo "
 									<div class=half_w half_$orientation>
-										<form id='form_$id' method='post' action='vesti_izmeni.php' >
+										<form id='form_$id' method='post' action='zaposlenje_izmeni.php' >
 											<div class=h_title>
 												$naslov
 											</div>

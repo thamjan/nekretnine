@@ -15,6 +15,8 @@ $id_korisnika = $_SESSION['id_user'];
 		$kategorija = "zaposlenje";
 	}
 
+	console.log($tip_posta);
+	
 	$query = "INSERT INTO post(id_user, naslov, text, datum_objave, status, tip) VALUES ('$id_korisnika', '$naslov', '$sadrzaj', '$datum', '$objavi', '$tip_posta')";
 
 	try {
