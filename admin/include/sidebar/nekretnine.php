@@ -15,5 +15,5 @@
 </ul>
 <div class="h_title">&#8250; Kategorije-Atributi</div>
 <ul id="home">
-    <li class="b2"><a class="icon report" href="atributi_lista.php">Poveži kat-atr</a></li>
+    <li class="b2"><a class="icon report" href="kategorije_povezi.php">Poveži kat-atr</a></li>
 </ul>
