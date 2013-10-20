@@ -43,6 +43,7 @@
                             <thead>
                                 <tr>
                                     <th scope="col">Naziv</th>
+									<th scope="col">Tip</th>
                                     <th scope="col">Broj oglasa</th>
                                     <th scope="col" style="width: 44px;"></th>
                                 </tr>
@@ -51,16 +52,12 @@
                             <?php
                             include './logic/common.php';
                             $query = '
-								SELECT a.id_atributa as id, a.naziv_atributa AS ime, COUNT(x.id_kategorije) AS broj_oglasa
-								FROM atributi a
-								LEFT JOIN 	(	SELECT ka.id_kategorije, ka.id_atributa 
-												FROM kategorije_atributi ka, atributi aa
-												WHERE ka.id_atributa = aa.id_atributa
-											) x ON x.id_atributa = a.id_atributa
+								SELECT a.id_atributa as id, a.naziv_atributa AS ime, a.tip as tip, COUNT(oa.id_oglas) AS broj_oglasa
+								FROM atributi a, oglas_atributi oa
+								WHERE oa.id_atribut = a.id_atributa
 								GROUP BY a.id_atributa
-								ORDER BY COUNT(x.id_kategorije) DESC
+								ORDER BY COUNT(oa.id_oglas) DESC
 							';
-								
 
 
                             try {
@@ -71,9 +68,16 @@
                             }
 
                             while (($row = $stmt->fetch()) != NULL) {
+								if($row['tip'] === '2') {
+									$tip_attr = 'Opis';
+								}
+								else if($row['tip'] === '1'){
+									$tip_attr = 'Ima/Nema';
+								}
                                 echo '
                                     <tr>
                                         <td class="align-center" id="tdNaziv' . $row['ime']  . '">' . $row['ime'] . '</td>
+										<td class="align-center" id="tdTip' . $tip_attr  . '">' . $tip_attr . '</td>
                                         <td class="align-center">' . $row['broj_oglasa'] . '</td>';
 								?>
                                 

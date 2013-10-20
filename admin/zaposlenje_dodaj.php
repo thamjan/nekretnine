@@ -50,8 +50,7 @@
 			$(document).ready(function(){
 				$("#dodaj-post").click(function(){
 					
-					tinymce.triggerSave();
-					console.log("tu smo")
+					tinymce.triggerSave();					
 					$.post("logic/dodajpost.php", $("#dodaj-vest").serialize(),  function(response) {
 						//alert(response);
 						console.log(response)
