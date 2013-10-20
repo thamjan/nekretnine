@@ -20,7 +20,7 @@ $lista = array();
 			$index = $datarow['index'];
 			$id_kat = $kat_id;
 			
-			
+			array_push($lista, $id);
 			
 			//PISI U BAZU  
 			$query = "
@@ -33,13 +33,25 @@ $lista = array();
 			try {
 				$stmt = $db->prepare($query);
 				$stmt->execute();
-				echo "Uspešno ste dodali ovo";
 				
 			} catch (PDOException $e) {
 				die("Failed to run update: " . $e->getMessage());
 			}  
 					  
-		}
+		} //end for each
+		
+		$del  = implode(', ',$lista );
+		//echo "OVO JE U QUERIJU: ".$del." I ID KAT JE ".$kat_id;
+			$qry = "DELETE FROM kategorije_atributi WHERE id_atributa NOT IN ($del) AND id_kategorije = $kat_id";
+		
+		try {
+				$stmt = $db->prepare($qry);
+				$stmt->execute();
+				echo "Uspešan unos!";
+				
+			} catch (PDOException $e) {
+				die("Failed to run update: " . $e->getMessage());
+			} 
 	}
 	
 	else echo "\$json['data'] is not an array";

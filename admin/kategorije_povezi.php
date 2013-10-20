@@ -172,7 +172,7 @@
 						
 						console.log(JSON.stringify(elementi))
 						$.post ("logic/povezikatatr.php", { data: JSON.stringify(elementi) }, function (result) {
-							console.log(result);
+							alert(result);
 								
 					})
 				});

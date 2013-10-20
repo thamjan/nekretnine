@@ -52,11 +52,10 @@
                             <?php
                             include './logic/common.php';
                             $query = '
-								SELECT a.id_atributa as id, a.naziv_atributa AS ime, a.tip as tip, COUNT(oa.id_oglas) AS broj_oglasa
-								FROM atributi a, oglas_atributi oa
-								WHERE oa.id_atribut = a.id_atributa
+								SELECT  a.id_atributa as id , a.naziv_atributa as ime, a.tip as tip, COUNT(o.id_atribut)  broj_oglasa
+								FROM  atributi a LEFT JOIN oglas_atributi o
+								ON a.id_atributa = o.id_atribut
 								GROUP BY a.id_atributa
-								ORDER BY COUNT(oa.id_oglas) DESC
 							';
 
 
