@@ -44,20 +44,14 @@
                             <?php
                             include_once './logic/common.php';
                             $query = '
-
 								SELECT * FROM kategorije
-
 							';
-								
-
-
                             try {
                                 $stmt = $db->prepare($query);
                                 $result = $stmt->execute();
                             } catch (PDOException $ex) {
                                 die("Failed to run query: " . $ex->getMessage());
                             }
-
                             while (($row = $stmt->fetch()) != NULL) {
                                 echo '
                                        <option  value='.$row['id_kategorije']. '>'.$row['naziv_kategorije']. '</option>';
@@ -66,27 +60,23 @@
                             </select>    
 							<hr/>
 							<div class="kat-sort">
-								
+								<div class="atr-selector">
+								<h4>Izabrani atributi</h4>
 								<ul id="target" class="lista-atributa">
-								  <li>Item 1</li>
-								  <li>Item 2</li>
-								  <li>Item 3</li>
-								  <li>Item 4</li>
-								  <li class="ui-state-default">Item 5</li>
-								</ul>
 								 
-								<ul id="all" class="lista-atributa">
-								  <li>Item 1</li>
-								  <li>Item 2</li>
-								  <li>Item 3</li>
-								  <li>Item 4</li>
-								  <li>Item 5</li>
 								</ul>
- 
+								</div> 
+								<div class="atr-selector"> 
+								<h4>Ostali atributi</h4>
+								<ul id="all" class="lista-atributa">
+								 
+								</ul>
+								</div> 
 							</div>
 
 
                         <div class="entry">
+							<button id="kat-atr-p">Sačuvaj Promene</button>
                             <div class="sep"></div>
                         </div>
                     </div>
@@ -106,24 +96,85 @@
 		  });
 		  
 		  $(document).ready(function(){
-				$("#kat-select").change(function(){
-					
-					var id_kat = $(this).val();
-					
-					if(id_kat > 0){
-						console.log(id_kat)
+				$("#kat-select").change(function(){					
+					var id_kat = $(this).val();					
+					if(id_kat > 0){					
+						$("#kat-atr-p").show();
 						$.post("logic/listajatribute.php",{
 							id: id_kat
-						},function(result){
-							alert(result);
+						},function(result){						
+							var listaAtributa = {
+								povezaniAtr: [],
+								ostaliAtr:[]
+							}
+												
+							//console.log(result)
+							var data = $.parseJSON(result);
+							$.each(data, function(i, item){
+							var status = this['status'];
+								if(status=='1'){
+									listaAtributa.povezaniAtr.push({
+										id: this['id'],
+										naziv: this['naziv']
+									});
+								}								
+								else{
+									listaAtributa.ostaliAtr.push({
+										id: this['id'],
+										naziv: this['naziv']
+									});	
+								}
+								
+							});							
+							//isprazni liste
+							$("#target").html("");
+							$("#all").html("");
+							//pravi html za liste
+							$.each( listaAtributa.povezaniAtr, function( i, item ) {								
+								$("#target").append("<li data-id='"+this['id']+"'>"+this['naziv']+"</li>");		
+								
+							});							
+							$.each( listaAtributa.ostaliAtr, function( i, item ) {								
+								$("#all").append("<li data-id="+this['id']+">"+this['naziv']+"</li>");								
+							});
 							
 						});
-						
-						
-						
-					}
-					
+					}					
+					else {
+						$("#target").html("");
+						$("#all").html("");
+						$("#kat-atr-p").hide();
+					}					
 					return false;
+				});
+				
+				$("#kat-atr-p").click(function(){
+						var kat_id = $("#kat-select").val();
+				
+						var elementi = {
+							id_kat: kat_id,
+							atribut: []
+						}
+					
+						
+						//console.log('id kategorije je '+kat_id)
+					$("#target li").each(function(){						
+						var atr_id = $(this).attr('data-id');
+						var atr_index = $(this).index();
+						elementi.atribut.push({
+							id: atr_id,
+							index: atr_index
+						});
+						
+						//JSON.stringify(elementi);
+						
+						});		
+						
+						console.log(JSON.stringify(elementi))
+						$.post ("logic/povezikatatr.php", { data: JSON.stringify(elementi) }, function (result) {
+							console.log(result);
+								
+					})
 				});
 		  });
 		</script>

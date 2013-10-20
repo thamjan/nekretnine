@@ -312,7 +312,7 @@ table tr{
 }
 table td{ 
 	border-bottom: 1px solid #ffffff; 
-	border-top: 1px solid ffffff; 
+	border-top: 1px solid #ffffff; 
 	color: #565656;
 	padding: 8px; 
 }
@@ -510,17 +510,38 @@ article h5 {
 }
 
 #all{
-	background:#b8e0ec;
+	background:#e0e0e0;
+	border: 1px solid #ccc;
 }
 
 #target {
-	background: #B3FFB3;
+	background: #de7a27;
+	border: 1px solid #ccc;
 }
 
 #target li{
-	background:#fff;
+	background:#bebebe;
+	color:#000;
+	font-weight:bold;
 }
 
 #all li{
 	background:#000;
+	color:#fff;
+	font-weight:bold;
+}
+
+#kat-atr-p{
+	display:none;
+}
+
+.atr-selector{
+	text-align:center;
+	float:left;
+	width: 290px;	
+	padding: 20px;
+}
+
+.atr-selector h4{
+	font-size:17px;
 }
