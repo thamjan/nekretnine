@@ -545,3 +545,76 @@ article h5 {
 .atr-selector h4{
 	font-size:17px;
 }
+
+/* dodavanje nekretnine */
+
+.addWrap {
+	display: block;
+	/* height: 500px; */
+}
+
+.addWrap table tbody tr {
+	background: none;
+}
+
+.addWrap table tr td {
+	
+}
+
+.add_progress {
+	display: block;
+	height: 40px;
+	margin-top: 20px;
+	/* background-color: red; */
+}
+
+#add_progressbar {
+	position: absolute;
+	margin-left: 100px;
+	width: 460px;
+}
+
+#btnAddWrapPrevious {
+	position: absolute;
+	margin-left: 0px;
+}
+
+#btnAddWrapNext {
+	position: absolute;
+	margin-left: 575px;
+}
+
+.addSection {
+	display: block;
+	 /* height: 333px; */
+	/* font-size: 20px; */
+	/* background-color: pink; */
+	margin: 10px;
+	border: solid 1px rgba(255,0,0,.0);
+}
+
+.addSection .addTitle{
+	font-size: 20px;
+}
+
+.add_1 {
+	/* background-color: red; */
+}
+
+.add_2 {
+	/* background-color: blue; */
+}
+
+.add_3 {
+	/* background-color: green; */
+}
+
+.add_4 {
+	/* background-color: yellow; */
+}
+
+.add_5 {
+	/* background-color: orange; */
+}
+
+/* kraj dodavanje nekretnine */
