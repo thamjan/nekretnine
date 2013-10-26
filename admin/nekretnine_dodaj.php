@@ -20,24 +20,6 @@
 							<div class='addWrap'>
 								<div class='addSection add_1'>
 									<div class="h_title">Korak 1</div>
-									<!--<table>
-										<tr>
-											<td>Kategorija:</td>
-											<td><input type='text' name='txtKategorija' /></td>
-										</tr>
-										<tr>
-											<td>Vrsta:</td>
-											<td>
-												Iznajmljivanje&nbsp;<input type='radio' name='rVrsta' checked/>
-											</td>
-											<td>
-												Prodaja&nbsp;<input type='radio' name='rVrsta' />
-											</td>
-										</tr>
-										<tr>
-											<td></td>
-										</tr>
-									</table>-->
 									<div class="sep"></div>	
 									<div class="full_w">
 										<label for="name">Kategorija</label>
@@ -50,21 +32,6 @@
 										<label for="name">Vrsta</label>
 										Iznajmljivanje&nbsp;<input type='radio' name='rVrsta' checked="checked" value="1"/>
 										Prodaja&nbsp;<input type='radio' name='rVrsta' value="2"/>
-										<!--<div class="element">
-											<label for="name">Naziv atributa</label>
-											<input id="txtNaziv" name="txtNaziv" class="text err" />
-										</div>									
-										<div class="element">
-											<label for="category">Tip atributa</label>
-											<select name="category" class="err" id="txtTip">
-												<option value="0">-- Odaberite</option>
-												<option value="1">Ima/Nema</option>
-												<option value="2">Opis</option>
-											</select>
-										</div>
-										<div class="entry">
-											<button type="submit" class="btnSubmit" val='11'>Dodaj</button>
-										</div>-->
 									</div>
 								</div>
 								<div class='addSection add_2'>
