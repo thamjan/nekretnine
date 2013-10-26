@@ -3,6 +3,8 @@
 <html>
     <head>
         <?php include_once './include/head.php'; ?>
+		
+		<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB1MIIqQUJEfZ036LXGtS40TAXwu0fU7ZI&sensor=false"></script>
 		<script type="text/javascript" src="js/oglas-new.js"></script>
     </head>
     <body>
@@ -23,8 +25,26 @@
 									<div class="sep"></div>	
 									<div class="full_w">
 										<label for="name">Kategorija</label>
-										<select name="slKategorija"  class="err"">
+										<select name="slKategorija"  class="err" id="add-kat">
 											<option value="0">-- izaberite kategoriju</option>
+						<?php   
+							include_once './logic/common.php';
+                            $query = '
+								SELECT kategorije.id_kategorije as id, kategorije.naziv_kategorije as ime from kategorije
+							';
+
+                            try {
+                                $stmt = $db->prepare($query);
+                                $result = $stmt->execute();
+                            } catch (PDOException $ex) {
+                                die("Failed to run query: " . $ex->getMessage());
+                            }
+
+                            while (($row = $stmt->fetch()) != NULL) {
+                                echo '<option value='.$row['id'].'>'.$row['ime'].'</option>';
+                                
+							}
+						?>
 										</select>
 									</div>
 									<div class="sep"></div>	
@@ -39,43 +59,59 @@
 									<div class="sep"></div>	
 									<div class="full_w">
 										<label for="name">Naziv</label>
-										<input id="txtNaziv" name="txtNaziv" class="err" />
+										<input style="width:200px;" id="txtNaziv" name="txtNaziv" class="err" />
 									</div>
 									<div class="sep"></div>	
 									<div class="full_w">
 										<label for="name">Cena</label>
-										<input id="txtCena" name="txtCena" class="err" />
+										<input style="width:70px;" id="txtCena" name="txtCena" class="err" />
 									</div>
 									<div class="sep"></div>	
 									<div class="full_w">
 										<label for="name">Kvadratura</label>
-										<input id="txtKvadratura" name="txtKvadratura" class="err" />
+										<input style="width:70px;" id="txtKvadratura" name="txtKvadratura" class="err" />
 									</div>
 									<div class="sep"></div>	
 									<div class="full_w">
 										<label for="name">Adresa</label>
-										<select name="slGrad"  class="err"">
-											<option value="0">-- izaberite grad</option>
-										</select>
-										<select name="slOpstina"  class="err"">
+										<select name="opstina_grad" id="grad-lista" class="err" onchange="listaj(this.value)">
+                                    <option value="0">-- izaberite grad</option>
+                                    <?php
+										$query = 'select gradovi.id_grad as ID_grad, gradovi.naziv as Grad 
+										from gradovi';
+										try {
+											$stmt = $db->prepare($query);
+											$result = $stmt->execute();
+										} catch (PDOException $ex) {
+											die("Failed to run query: " . $ex->getMessage());
+										}
+										while (($row = $stmt->fetch()) != NULL) {
+											echo '<option value='.$row['ID_grad'].'>'.$row['Grad']. '</option>';
+										}
+									?>
+                                </select>
+										<select name="slOpstina" id="opstine-lista" class="err" onchange="listajM(this.value)">
 											<option value="0">-- izaberite opštinu</option>
 										</select>
-										<select name="slMz"  class="err"">
+										<select name="slMz" id="mz-lista"  class="err">
 											<option value="0">-- izaberite mz</option>
 										</select>
-										<select name="slUlica"  class="err"">
-											<option value="0">-- izaberite ulicu</option>
-										</select>
-										Prikaži na mapi&nbsp;<input type='checkbox' name='cbPrikaziNaMapi' />
+										<div style="margin: 10px 0;">
+											Ulica:
+											<input type="text" name="ulica" class="err" style="width:70%;" id="ulica">
+											Prikaži na mapi&nbsp;<input onclick="initialize()"  type='checkbox' name='cbPrikaziNaMapi' />
+											<input type="button" onclick="codeAddress()" class="marker-add" value="Postavi Marker">
+										</div>
 									</div>
 									<div class="sep"></div>	
-									<div class="full_w">
-										<label for="name">Google API</label>										
+									<div class="full_w" id="gmaps">
+										<label for="name">Google API</label>
+										<div style="width:100%; height:500px;"id="map-canvas"></div>
 									</div>
 									<div class="sep"></div>	
 									<div class="full_w">
 										<label for="name">Opis</label>
-										<input id="txtOpis" name="txtOpis" class="err" />
+										<textarea id="txtOpis" name="txtOpis" class="err txtarea" maxlength="2000" ></textarea>
 									</div>
 									<div class="sep"></div>	
 								</div>
@@ -84,25 +120,10 @@
 									<div class="sep"></div>	
 									<div class="full_w">
 										<label for="name">Atributi</label>
-											Atribut&nbsp;<input type='checkbox' name='Atribut' />&nbsp;
-											Atribut&nbsp;<input type='checkbox' name='Atribut' />&nbsp;
-											Atribut&nbsp;<input type='checkbox' name='Atribut' />&nbsp;
-											Atribut&nbsp;<input type='checkbox' name='Atribut' />&nbsp;
-											Atribut&nbsp;<input type='checkbox' name='Atribut' />&nbsp;
-											Atribut&nbsp;<input type='checkbox' name='Atribut' />&nbsp;
-											Atribut&nbsp;<input type='checkbox' name='Atribut' />&nbsp;
-											Atribut&nbsp;<input type='checkbox' name='Atribut' />&nbsp;
-											Atribut&nbsp;<input type='checkbox' name='Atribut' /><br />
-											Atribut&nbsp;<input type='checkbox' name='Atribut' />&nbsp;
-											Atribut&nbsp;<input type='checkbox' name='Atribut' />&nbsp;
-											Atribut&nbsp;<input type='checkbox' name='Atribut' />&nbsp;
-											Atribut&nbsp;<input type='checkbox' name='Atribut' />&nbsp;
-											Atribut&nbsp;<input type='checkbox' name='Atribut' />&nbsp;
-											Atribut&nbsp;<input type='checkbox' name='Atribut' />&nbsp;
-											Atribut&nbsp;<input type='checkbox' name='Atribut' />&nbsp;
-											Atribut&nbsp;<input type='checkbox' name='Atribut' />&nbsp;
-											Atribut&nbsp;<input type='checkbox' name='Atribut' />
-										</select>
+										<table id="attr-list">
+											
+										</table>
+										<button onclick="pokupiAtr()">Testiraj formu Urose</button>
 									</div>
 									<div class="sep"></div>	
 								</div>
@@ -152,7 +173,10 @@
 
             </div>
         </div>
-
+		
+		<script>
+	
+		</script>
     </body>
 
 </html>

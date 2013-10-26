@@ -149,6 +149,7 @@ button:hover, .button:hover{
 	border: 1px solid #DCDDE1;
 	color: #848484;
 	margin: 0 0 20px 0;
+	padding: 5px;
 }
 #main .full_w .h_title, #main .half_w .h_title{
 	background: url(../img/bg_box_head.jpg) repeat-x;
@@ -618,3 +619,33 @@ article h5 {
 }
 
 /* kraj dodavanje nekretnine */
+
+#map-canvas, #gmaps{
+	display:none;
+}
+
+.marker-add{
+	display: none;
+	margin: 10px 28px 0;
+	color:#fff;
+	background:#f07e01 !important;
+}
+
+.txtarea{
+	width:99%;
+	display:block;
+	height:100px;
+}
+
+.full_w select {
+margin: 0 10px 0 0;
+}
+
+#attr-list{
+	width: 95% !important;
+	text-align: center;
+}
+
+#attr-list td{
+	border:1px solid #ccc;
+}

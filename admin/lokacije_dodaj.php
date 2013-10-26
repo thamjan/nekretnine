@@ -142,8 +142,8 @@
 			
 			function listaj(val){
 				console.log(val)
-				$.post("logic/listanje.php",  { value: val },  function(response) {
-						$("#footer").html(response)
+				$.post("logic/listanje.php",  { value: val, tip: "1" },  function(response) {
+						//$("#footer").html(response)
 						$("#opstine-lista").html(response);
 						});
 				
