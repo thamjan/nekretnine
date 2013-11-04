@@ -6,6 +6,10 @@
 		
 		<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB1MIIqQUJEfZ036LXGtS40TAXwu0fU7ZI&sensor=false"></script>
 		<script type="text/javascript" src="js/oglas-new.js"></script>
+		<!-- file upload -->
+		<script src="js/fileUpload.js"></script>
+		<link rel="stylesheet" href="css/fileUpload.css">
+		<!-- end of file upload -->
     </head>
     <body>
         <div class="wrap">
@@ -130,9 +134,28 @@
 								<div class='addSection add_4'>
 									<div class="h_title">Korak 4</div>
 									<div class="full_w">
-										<label for="name">Medija</label>
-											<input type="file" name="fSlike" />
-										</select>
+										<label for="name">Medija</label>											
+											<input type="file" id="fileElem" multiple="true" accept="image/*" onchange="handleFiles(this.files)"> 
+											<span style="font-size:14px;color: #1F6289;font-weight:bold;">Odaberite fajl slike</span> 
+											<div id="dropbox">Prevucite i pustite sliku ovde...</div>
+											<div class="upload-progress"></div>
+											<div id='listaSLika'>
+												
+												<table>
+													<thead>
+														<tr>
+															<th scope="col">Slika</th>
+															<th scope="col">Ime fajla</th>
+															<th scope="col">Featured</th>
+															<th scope="col" style="width: 44px;"></th>
+														</tr>
+													</thead>
+													<tbody class="content" id="content"> 
+														
+													</tbody>
+												</table>
+											</div>
+											<input type='hidden' id='hidImgList' />
 									</div>
 									<div class="sep"></div>	
 								</div>
