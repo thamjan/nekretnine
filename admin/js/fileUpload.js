@@ -163,7 +163,8 @@ $(document).ready(function(){
 	
 		$tBody = $(' .content ');
 
-		$newTableRow = "<tr><td class='align-center'><img class='thumb' src='uploads/" + $name + "' /></td><td class='thumbName'>" + $name + "</td><td class='radioTd'><input onclick='alert(" + $name + ");' type='radio' value='" + $name + "' name='rFeatured' /></td><td><a href='#' class='table-icon delete' title='Delete'></a></td></tr>";
+		// $newTableRow = "<tr><td class='align-center'><img class='thumb' src='uploads/" + $name + "' /></td><td class='thumbName'>" + $name + "</td><td class='radioTd'><input type='radio' value='" + $name + "' name='rFeatured' /></td><td><a href='#' class='table-icon delete' title='Delete'></a></td></tr>";
+		$newTableRow = '<tr><td class="align-center"><img class=thumb src=uploads/' + $name + ' /></td><td class=thumbName>' + $name + '</td><td class=radioTd><input type=radio value=' + $name + ' name=rFeatured /></td><td><a href=# class="table-icon delete" title=Delete></a></td></tr>';
 
 		 $tBody.append($newTableRow);
 

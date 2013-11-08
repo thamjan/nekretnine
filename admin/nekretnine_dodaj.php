@@ -6,6 +6,10 @@
 		
 		<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB1MIIqQUJEfZ036LXGtS40TAXwu0fU7ZI&sensor=false"></script>
 		<script type="text/javascript" src="js/oglas-new.js"></script>
+		<!-- file upload -->
+		<script src="js/fileUpload.js"></script>
+		<link rel="stylesheet" href="css/fileUpload.css">
+		<!-- end of file upload -->
     </head>
     <body>
         <div class="wrap">
@@ -18,9 +22,9 @@
                     <div class="full_w">
                         <div class="h_title">Dodavanje nove nekretnine/oglasa</div>
 
-                        <form id="nekretnina">
+                        <form>
 							<div class='addWrap'>
-								<div class='addSection add_1' id="step-1">
+								<div class='addSection add_1'>
 									<div class="h_title">Korak 1</div>
 									<div class="sep"></div>	
 									<div class="full_w">
@@ -54,7 +58,7 @@
 										Prodaja&nbsp;<input type='radio' name='rVrsta' value="2"/>
 									</div>
 								</div>
-								<div class='addSection add_2'id="step-2">
+								<div class='addSection add_2'>
 									<div class="h_title">Korak 2</div>
 									<div class="sep"></div>	
 									<div class="full_w">
@@ -107,8 +111,6 @@
 									<div class="full_w" id="gmaps">
 										<label for="name">Google API</label>
 										<div style="width:100%; height:500px;"id="map-canvas"></div>
-										<input type="hidden" name="glat" id="glat" value="0" />
-										<input type="hidden" name="glon" id="glon" value="0" />
 									</div>
 									<div class="sep"></div>	
 									<div class="full_w">
@@ -117,7 +119,7 @@
 									</div>
 									<div class="sep"></div>	
 								</div>
-								<div class='addSection add_3'id="step-3">
+								<div class='addSection add_3'>
 									<div class="h_title">Korak 3</div>
 									<div class="sep"></div>	
 									<div class="full_w">
@@ -129,12 +131,31 @@
 									</div>
 									<div class="sep"></div>	
 								</div>
-								<div class='addSection add_4'id="step-4">
+								<div class='addSection add_4'>
 									<div class="h_title">Korak 4</div>
 									<div class="full_w">
-										<label for="name">Medija</label>
-											<input type="file" name="fSlike" />
-										</select>
+										<label for="name">Medija</label>											
+											<input type="file" id="fileElem" multiple="true" accept="image/*" onchange="handleFiles(this.files)"> 
+											<span style="font-size:14px;color: #1F6289;font-weight:bold;">Odaberite fajl slike</span> 
+											<div id="dropbox">Prevucite i pustite sliku ovde...</div>
+											<div class="upload-progress"></div>
+											<div id='listaSLika'>
+												
+												<table>
+													<thead>
+														<tr>
+															<th scope="col">Slika</th>
+															<th scope="col">Ime fajla</th>
+															<th scope="col">Featured</th>
+															<th scope="col" style="width: 44px;"></th>
+														</tr>
+													</thead>
+													<tbody class="content" id="content"> 
+														
+													</tbody>
+												</table>
+											</div>
+											<input type='hidden' name='hidImgList' id='hidImgList' />
 									</div>
 									<div class="sep"></div>	
 								</div>
@@ -142,8 +163,8 @@
 									<div class="h_title">Korak 5</div>
 									<div class="full_w">
 										<label for="name">Medija</label>
-											<button  id="btnPreview">Pregled</button><br />
-											<button  id="btnSubmit">Dodaj Nekretninu</button>
+											<button type="submit" id="btnPreview">Pregled</button><br />
+											<button id="btnSubmit">Dodaj Nekretninu</button>
 										</select>
 									</div>
 									<div class="sep"></div>	
@@ -177,20 +198,7 @@
         </div>
 		
 		<script>
-			$("#btnSubmit").click(function(){
-			//	submitted = true;
-				console.log("sta je ovo "+$('#step-1 *, #step-2 *').serialize());
-				var forma = $('#step-1 *, #step-2 *').serialize();
-				M_lat,M_lon
-				var customs = pokupiAtr();
-				console.log(forma);
-			//	$.post("logic/nekretnina.php",	$('#step-1 *, #step-2 *').serialize(),  function(response) {
-					
-			//		console.log(response)
-			//	});
-				
-			
-			});
+	
 		</script>
     </body>
 

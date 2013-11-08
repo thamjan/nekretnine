@@ -1,5 +1,30 @@
 $(document).ready(function() {
 
+	$(' #btnSubmit ').click(function(e) {
+		e.preventDefault();
+		// console.log('dsfaldsk');
+		$.post("logic/nekretnina.php",
+			{
+				p:"10",
+				txtNaziv: $(' #txtNaziv ').val(),
+				txtOpis: $(' #txtOpis ').val(),
+				hidImgList: $(' #hidImgList ').val(),
+				opstina_grad: $(' #grad-lista ').val(),
+				slOpstina: $(' #opstine-lista ').val(),
+				slMz: $(' #mz-lista ').val(),
+				ulica: $(' #ulica ').val(),
+				slKategorija: $(' #add-kat ').val(),
+				txtCena: $(' #txtCena ').val(),
+				txtKvadratura: $(' #txtKvadratura ').val(),
+				rVrsta: $("input[type='radio'][name='rVrsta']:checked").val(),
+				glat: '666',
+				glon: '999'
+			},
+			function(result, status){
+				alert(result + status);
+			});
+	});
+
 	$progressBarStep = 100/5;
 	$progressBarValue = $progressBarStep;
 	$progressBar = $( "#add_progressbar" );
