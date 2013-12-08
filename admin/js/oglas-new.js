@@ -2,27 +2,18 @@ $(document).ready(function() {
 
 	$(' #btnSubmit ').click(function(e) {
 		e.preventDefault();
-		// console.log('dsfaldsk');
-		$.post("logic/nekretnina.php",
-			{
-				p:"10",
-				txtNaziv: $(' #txtNaziv ').val(),
-				txtOpis: $(' #txtOpis ').val(),
-				hidImgList: $(' #hidImgList ').val(),
-				opstina_grad: $(' #grad-lista ').val(),
-				slOpstina: $(' #opstine-lista ').val(),
-				slMz: $(' #mz-lista ').val(),
-				ulica: $(' #ulica ').val(),
-				slKategorija: $(' #add-kat ').val(),
-				txtCena: $(' #txtCena ').val(),
-				txtKvadratura: $(' #txtKvadratura ').val(),
-				rVrsta: $("input[type='radio'][name='rVrsta']:checked").val(),
-				glat: '666',
-				glon: '999'
-			},
-			function(result, status){
-				alert(result + status);
-			});
+		var formz = $("#step-1 *, #step-2 *, #step-4 *").serialize();
+		
+		console.log('data '+ formz);
+		
+		$.post("logic/nekretnina.php", formz,  function(data) {
+				console.log('u sesiji smo' + data);
+				$("#footer").html(data)
+				pokupiAtr();
+		});
+		
+		
+	return false;
 	});
 
 	$progressBarStep = 100/5;
@@ -147,9 +138,12 @@ function codeAddress() {
 	}
 	
 	google.maps.event.addListener(marker, 'dragend', function(evt){
-		M_lat = marker.position.lb;
-		M_lon = marker.position.mb;
-		//console.log("*NA DROP* LAT JE "+M_lat+" I LON "+M_lon)
+		console.log(marker)
+		M_lat = marker.position.pb;
+		M_lon = marker.position.qb;
+		console.log("*NA DROP* LAT JE "+M_lat+" I LON "+M_lon)
+		$("#glat").val(M_lat);
+		$("#glon").val(M_lon);
 	});					
 	});
 }
@@ -203,19 +197,39 @@ window.onbeforeunload = function() {
 			
 //skupljamo samo popunjene vrednosti atributa za kategoriju i pisemo u oglas
 function pokupiAtr(){
+
+	var customData = {
+			data: []
+		};
+
 	$("#attr-list input[type=text]").each(function(){
 		var id_atr = $(this).attr('data-id');
 		var vrednost_atr = $(this).val();
 			if(vrednost_atr.length > 0){
-					console.log("ID JE "+id_atr+"  I vrednost: "+vrednost_atr)
+		//console.log("ID JE "+id_atr+"  I vrednost: "+vrednost_atr);
+			customData.data.push({
+					id : id_atr,
+					val :vrednost_atr
+			});
 			}
 	});			
 				
 	$("#attr-list input[type=radio]:checked").each(function(){
 		var id_atr = $(this).attr('data-id');
 		var vrednost_atr = $(this).val();
-		console.log("RADIO ID JE "+id_atr+"  I vrednost: "+vrednost_atr)
-	})
+		customData.data.push({
+			id : id_atr,
+			val :vrednost_atr
+		});
+	//	console.log("RADIO ID JE "+id_atr+"  I vrednost: "+vrednost_atr);
+	});
+	
+	var ad_data = JSON.stringify(customData);
+
+	console.log(ad_data);
+	$.post("logic/postNewAd.php", {data : ad_data},  function(res) {
+				$('#footer').html(res);	
+		});
 }
 
 

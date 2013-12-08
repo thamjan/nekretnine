@@ -24,7 +24,7 @@
 
                         <form>
 							<div class='addWrap'>
-								<div class='addSection add_1'>
+								<div class='addSection add_1' id="step-1">
 									<div class="h_title">Korak 1</div>
 									<div class="sep"></div>	
 									<div class="full_w">
@@ -58,22 +58,22 @@
 										Prodaja&nbsp;<input type='radio' name='rVrsta' value="2"/>
 									</div>
 								</div>
-								<div class='addSection add_2'>
+								<div class='addSection add_2' id="step-2">
 									<div class="h_title">Korak 2</div>
 									<div class="sep"></div>	
 									<div class="full_w">
 										<label for="name">Naziv</label>
-										<input style="width:200px;" id="txtNaziv" name="txtNaziv" class="err" />
+										<input style="width:200px;" id="txtNaziv" name="txtNaziv" value="" class="err" />
 									</div>
 									<div class="sep"></div>	
 									<div class="full_w">
 										<label for="name">Cena</label>
-										<input style="width:70px;" id="txtCena" name="txtCena" class="err" />
+										<input style="width:70px;" id="txtCena" name="txtCena" value="" class="err" />
 									</div>
 									<div class="sep"></div>	
 									<div class="full_w">
 										<label for="name">Kvadratura</label>
-										<input style="width:70px;" id="txtKvadratura" name="txtKvadratura" class="err" />
+										<input style="width:70px;" id="txtKvadratura" name="txtKvadratura" value="" class="err" />
 									</div>
 									<div class="sep"></div>	
 									<div class="full_w">
@@ -102,7 +102,7 @@
 										</select>
 										<div style="margin: 10px 0;">
 											Ulica:
-											<input type="text" name="ulica" class="err" style="width:70%;" id="ulica">
+											<input type="text" name="ulica" class="err" style="width:70%;" value="" id="ulica">
 											Prikaži na mapi&nbsp;<input onclick="initialize()"  type='checkbox' name='cbPrikaziNaMapi' />
 											<input type="button" onclick="codeAddress()" class="marker-add" value="Postavi Marker">
 										</div>
@@ -111,15 +111,17 @@
 									<div class="full_w" id="gmaps">
 										<label for="name">Google API</label>
 										<div style="width:100%; height:500px;"id="map-canvas"></div>
+										<input type="hidden" name="glat" value="0" id="glat">
+										<input type="hidden" name="glon" value="0" id="glon">
 									</div>
 									<div class="sep"></div>	
 									<div class="full_w">
 										<label for="name">Opis</label>
-										<textarea id="txtOpis" name="txtOpis" class="err txtarea" maxlength="2000" ></textarea>
+										<textarea id="txtOpis" name="txtOpis" class="err txtarea" value="" maxlength="2000" ></textarea>
 									</div>
 									<div class="sep"></div>	
 								</div>
-								<div class='addSection add_3'>
+								<div class='addSection add_3' id="step-3">
 									<div class="h_title">Korak 3</div>
 									<div class="sep"></div>	
 									<div class="full_w">
@@ -131,7 +133,7 @@
 									</div>
 									<div class="sep"></div>	
 								</div>
-								<div class='addSection add_4'>
+								<div class='addSection add_4' id="step-4">
 									<div class="h_title">Korak 4</div>
 									<div class="full_w">
 										<label for="name">Medija</label>											
@@ -155,11 +157,11 @@
 													</tbody>
 												</table>
 											</div>
-											<input type='hidden' name='hidImgList' id='hidImgList' />
+											<input type='hidden' name='hidImgList' value="" id='hidImgList' />
 									</div>
 									<div class="sep"></div>	
 								</div>
-								<div class='addSection add_5'>
+								<div class='addSection add_5' id="step-5">
 									<div class="h_title">Korak 5</div>
 									<div class="full_w">
 										<label for="name">Medija</label>
@@ -184,14 +186,13 @@
 							</div>
                         </form>
                         <!--<div class="sep"></div>-->
-						
-						
-
                     </div>
 
                 </div>	
             </div>
-
+			
+			
+			
             <div id="footer">
 
             </div>

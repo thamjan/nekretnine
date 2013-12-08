@@ -2,7 +2,6 @@
 session_start(); 
 include 'common.php';
 
-// echo 'nek!!';
 
 $user_id = $_SESSION['id_user'];
 $naziv = $_POST['txtNaziv'];
@@ -16,39 +15,30 @@ $mz = $_POST['slMz'];
 $adresa = $_POST['ulica'];
 $kategorija = $_POST['slKategorija'];
 $br_pregleda = 0;
+
 $datum = date('Y-m-d H:i:s',$_SERVER['REQUEST_TIME']);
 $status = 1;//ovo je da li je oglas objavljen ili ne
+
 $cena = $_POST['txtCena'];
 $kvadratura = $_POST['txtKvadratura'];
 $vrsta = $_POST['rVrsta'];
 
-// sad custom iz jsona
-// $customs = json_decode($_POST['custom'], true );
-
-// $latlon = $customs['lat'].",".$customs['lon'];
 $latlon = $_POST['glat'].",".$_POST['glon'];
 
-	$query = "INSERT INTO oglas(id_user, naziv, opis, media, id_zemlja, id_grad, id_opstina, id_mz, adresa, latlon, kategorija, br_pregleda, datum_objave, status, cena, kvadratura, vrsta) 
-	VALUES ('$user_id', '$naziv', '$opis', '$media', '$zemlja', '$grad', '$opstina','$mz','$adresa','$latlon','$kategorija','$br_pregleda','$datum','$status','$cena','$kvadratura','$vrsta')";
-
-	//echo $query;
-	
-	try {
-		$stmt = $db->prepare($query);
-		$stmt->execute();
-		// echo "Uspešno ste dodali nekretninu!";
-		// echo "Uspešno ste dodali post '".$naslov."' u kategoriji <b>".$kategorija."</b>";
-	} catch (PDOException $e) {
-		die("Failed to run update: " . $e->getMessage());
-	}
-	
-
-$id_oglasa = mysql_insert_id();
-	
-
+$_SESSION['ad_user_id'] = $user_id;
+$_SESSION['ad_naziv'] = $naziv;
+$_SESSION['ad_opis'] = $opis;
+$_SESSION['ad_media'] = $media;
+$_SESSION['ad_zemlja'] = $zemlja;
+$_SESSION['ad_grad'] = $grad;
+$_SESSION['ad_opstina'] = $opstina;
+$_SESSION['ad_mz'] = $mz;
+$_SESSION['ad_kategorija'] = $kategorija;
+$_SESSION['ad_cena'] = $cena;
+$_SESSION['ad_adresa'] = $adresa;
+$_SESSION['ad_kvadratura'] = $kvadratura;
+$_SESSION['ad_vrsta'] = $vrsta;
+$_SESSION['ad_latlon'] = $latlon;
 		
-		echo "Oglas $naziv je uspešno dodat!";
-		die(); 
-	
-	
+	echo "sacuvano u sesiju!!!".$naziv;
 ?>
